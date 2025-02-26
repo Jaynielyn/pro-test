@@ -1,0 +1,438 @@
+.header {
+  width: 85%;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.header
+
+.header__hamburger {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.4s;
+  background-color: #305dff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px gray;
+  z-index: 20;
+}
+
+.header__hamburger span {
+  position: absolute;
+  left: 10px;
+  display: block;
+  height: 1px;
+  background-color: #fff;
+  transition: 0.8s;
+}
+
+.header__hamburger span:nth-of-type(1) {
+  width: 10px;
+  top: 13px;
+}
+
+.header__hamburger span:nth-of-type(2) {
+  width: 20px;
+  top: 20px;
+}
+
+.header__hamburger span:nth-of-type(3) {
+  width: 5px;
+  top: 27px;
+}
+
+.header__hamburger.active span:nth-of-type(1) {
+  width: 20px;
+  top: 20px;
+  transform: rotate(45deg);
+}
+
+.header__hamburger.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.header__hamburger.active span:nth-of-type(3) {
+  width: 20px;
+  top: 20px;
+  transform: rotate(-45deg);
+}
+
+.header__ttl {
+  font-size: 32px;
+  color: #305dff;
+  margin-left: 20px;
+}
+
+.menu {
+  display: none;
+}
+
+.menu.active {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  text-align: center;
+  padding-top: 30vh;
+}
+
+.menu__item {
+  display: block;
+  color: #305dff;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+/* 認証 */
+.auth-card {
+  background: #ffffff;
+  width: 400px;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding-bottom: 20px;
+  margin-top: 100px;
+  box-shadow: 2px 2px 4px gray;
+}
+
+.auth-card__ttl {
+  background: #305dff;
+  border-radius: 5px 5px 0 0;
+  color: #ffffff;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.auth-card__item {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-card__item__img {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.auth-card__item__input {
+  width: 300px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #000;
+  font-size: 16px;
+}
+
+.auth-card__btn {
+  text-align: right;
+  margin: 15px 30px 0 0;
+}
+
+.auth-card__btn input {
+  background: #305dff;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* サンクス */
+.thanks {
+  padding: 120px 100px 0;
+}
+
+.thanks-card {
+  background: #ffffff;
+  width: 450px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 100px;
+  box-shadow: 2px 2px 4px gray;
+  padding: 100px 0;
+  margin: 0 auto;
+}
+
+.thanks-card__txt {
+  font-size: 24px;
+  padding-bottom: 48px;
+}
+
+.thanks-card__link {
+  background: #305dff;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* ホーム */
+.search {
+  width: 600px;
+  padding: 10px 5px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px gray;
+  margin-left: auto;
+}
+
+.search__pull-down {
+  border-right: 1px solid #eee;
+}
+
+.search__pull-down select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 7px 30px 7px 10px;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  background-image: url(../img/triangle.png);
+  background-repeat: no-repeat;
+  background-size: 12px 10px;
+  background-position: right 10px center;
+  line-height: 1.1em;
+  cursor: pointer;
+}
+
+.search__keyword {
+  width: 400px;
+  background-image: url(../img/search.png);
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: auto 60%;
+  background-color: #fff;
+  padding-left: 40px;
+  border: none;
+  outline: 0;
+  font-size: 14px;
+}
+
+.search__btn {
+  background: #305dff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 60px;
+  text-align: center;
+}
+
+.shops {
+  width: calc(100vw - 200px);
+}
+
+.shop-card {
+  width: 300px;
+  height: 280px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px gray;
+  margin-bottom: 2%;
+}
+
+.shop-card__img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  height: 150px;
+  max-height: 150px;
+  object-fit: cover;
+}
+
+.shop-card__content {
+  padding: 20px;
+}
+
+.shop-card__content__ttl {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.shop-card__content__txt {
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.shop-card__content__link {
+  text-decoration: none;
+  background: #305dff;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.shop-card__content__icon {
+  cursor: pointer;
+}
+
+.shop-card__content__icon.active {
+  fill: red;
+}
+
+.shop-card__content__icon.inactive {
+  fill: #eee;
+}
+
+/* 詳細 */
+.shop-detail {
+  width: 50%;
+}
+
+.shop-detail__link {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 2px 2px 4px gray;
+}
+
+.shop-detail__ttl {
+  font-size: 28px;
+  margin-left: 12px;
+}
+
+.shop-detail__img {
+  margin-top: 30px;
+}
+
+.shop-detail__txt {
+  margin-top: 25px;
+  line-height: 24px;
+}
+
+.reservation {
+  width: 50%;
+}
+
+.reservation-card {
+  background: #305dff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px gray;
+  height: 70vh;
+  margin: 64px auto;
+  position: relative;
+  width: 85%;
+}
+
+.reservation-card__content {
+  padding: 36px 0 0 28px;
+}
+
+.reservation-card__content__ttl {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 28px;
+}
+
+.error__lists{
+  margin: 1rem 0;
+  color: #fff;
+}
+
+.reservation-card__date-input{
+  padding: 7px 30px 7px 10px;
+}
+
+.reservation-card__pull-down {
+  margin-top: 14px;
+}
+
+.reservation-card__pull-down select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 7px 30px 7px 10px;
+  height: 30px;
+  width: 90%;
+  border-radius: 5px;
+  border: none;
+  background-image: url(../img/triangle.png);
+  background-repeat: no-repeat;
+  background-size: 12px 10px;
+  background-position: right 10px center;
+  line-height: 1.1em;
+  outline: none;
+}
+
+.reservation-btn {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  padding: 20px 0;
+  border: none;
+  z-index: 1;
+  background: #0038ff;
+  border-radius: 0 0 5px 5px;
+  cursor: pointer;
+}
+
+/* マイページ */
+.username {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 48px;
+}
+
+.status {
+  width: 50%;
+}
+
+.status__ttl {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.status__card {
+  background: #305dff;
+  width: 80%;
+  margin: 30px 0;
+  padding: 30px;
+  color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px gray;
+}
+
+.status__card__top {
+  margin-bottom: 25px;
+}
+
+.status__card__bottom tr {
+  height: 40px;
+}
+
+.status__card__bottom td {
+  width: 100px;
+  vertical-align: middle;
+}
+
+.cancel {
+  cursor: pointer;
+}
+
+.likes {
+  width: 50%;
+}
+
+.likes__ttl {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
