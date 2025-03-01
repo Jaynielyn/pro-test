@@ -32,4 +32,15 @@ class ShopController extends Controller
 
         return redirect()->route('shops.index');
     }
+
+    public function book($id)
+    {
+        $shop = Shop::findOrFail($id);
+        return view('detail', compact('shop'));
+    }
+
+    public function review()
+    {
+        return view('review');
+    }
 }

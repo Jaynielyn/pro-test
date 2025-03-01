@@ -1,0 +1,85 @@
+
+.review-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.left-section,
+.right-section {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.left-section {
+    width: 40%;
+}
+
+.right-section {
+    width: 50%;
+    text-align: left;
+}
+
+.shop-card {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.shop-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.shop-info h3 {
+    margin: 5px 0;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.rating {
+    font-size: 24px;
+    color: #ffcc00;
+    margin: 10px 0;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.image-upload {
+    background-color: #f0f0f0;
+    padding: 30px;
+    text-align: center;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}

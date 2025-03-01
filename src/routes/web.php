@@ -15,3 +15,6 @@ use App\Http\Controllers\ShopController;
 */
 
 Route::get('/', [ShopController::class, 'index']);
+Route::get('/shops/{id}/detail', [ShopController::class, 'book'])->name('shops.detail');
+Route::get('/shops/book', [ShopController::class, 'review']);
+

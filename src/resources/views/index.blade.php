@@ -9,7 +9,7 @@
         <div class="card-content">
             <h3>{{ $shop->name }} <span class="rating">★5.00</span></h3>
             <p>#{{ $shop->region }} #{{ $shop->genre }}</p>
-            <button class="details">詳しく見る</button>
+            <a href="{{ route('shops.detail', ['id' => $shop->id]) }}" class="details">詳しく見る</a>
             <div class="favorite"><img></div>
         </div>
     </div>
