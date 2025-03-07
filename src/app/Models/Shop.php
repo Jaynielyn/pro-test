@@ -16,4 +16,10 @@ class Shop extends Model
     {
         return $this->image_path ? Storage::url($this->image_path) : asset('images/no-image.png');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
 }

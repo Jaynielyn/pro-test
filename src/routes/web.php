@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +17,7 @@ use App\Http\Controllers\ShopController;
 
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/shops/{id}/detail', [ShopController::class, 'book'])->name('shops.detail');
-Route::get('/shops/book', [ShopController::class, 'review']);
+Route::get('/review', [ReviewController::class, 'create'])->name('review');
+Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
+Route::get('/shops/{shop_id}/reviews', [ReviewController::class, 'index'])->name('shops.reviews');
 

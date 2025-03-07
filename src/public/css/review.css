@@ -42,6 +42,11 @@
     margin: 5px 0;
 }
 
+.star {
+    height: 10%;
+    width: 10%;
+}
+
 button {
     background-color: #007bff;
     color: white;
