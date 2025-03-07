@@ -15,7 +15,7 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
-Route::get('/', [ShopController::class, 'index']);
+Route::get('/', [ShopController::class, 'index'])->name('shops.index');
 Route::get('/shops/{id}/detail', [ShopController::class, 'book'])->name('shops.detail');
 Route::get('/review', [ReviewController::class, 'create'])->name('review');
 Route::post('/review', [ReviewController::class, 'store'])->name('review.store');

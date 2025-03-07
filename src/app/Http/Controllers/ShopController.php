@@ -7,11 +7,32 @@ use App\Models\Shop;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $shops = Shop::all();
+        $sort = $request->input('sort', 'random'); // デフォルトはランダム
 
-        return view('index', compact('shops'));
+        // 全店舗を取得し、リレーションで reviews を取得
+        $shops = Shop::with('reviews')->get();
+
+        // 各店舗の評価平均とレビュー数を計算
+        $shops->map(function ($shop) {
+            $shop->average_rating = $shop->reviews->avg('rating');
+            $shop->review_count = $shop->reviews->count();
+            return $shop;
+        });
+
+        // ソート処理
+        if ($sort === 'high') {
+            // 評価が高い順 (評価なしは最後)
+            $shops = $shops->sortByDesc(fn($shop) => $shop->average_rating ?? -1)->values();
+        } elseif ($sort === 'low') {
+            // 評価が低い順 (評価なしは最後)
+            $shops = $shops->sortBy(fn($shop) => $shop->average_rating ?? 9999)->values();
+        } elseif ($sort === 'random') {
+            $shops = $shops->shuffle();
+        }
+
+        return view('index', compact('shops', 'sort'));
     }
 
     public function store(Request $request)

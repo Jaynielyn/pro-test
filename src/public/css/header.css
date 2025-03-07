@@ -1,0 +1,25 @@
+.search__box {
+    display: flex;
+    flex-direction: column;
+}
+
+.sort-form {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    width: 60%;
+}
+
+.label {
+    width: 100%;
+}
+
+.search__inner {
+    display: flex;
+    width: 40%;
+
+}
+
+.sort__select {
+    display: flex;
+}
