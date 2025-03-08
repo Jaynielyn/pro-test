@@ -27,25 +27,34 @@
         </div>
         @endif
 
-        <form action="{{ route('review.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ isset($review) ? route('reviews.update', ['id' => $review->id]) : route('reviews.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+            @if(isset($review))
+            @method('PUT') {{-- 更新時 --}}
+            @endif
+
+            <input type="hidden" name="shop_id" value="{{ isset($review) ? $review->shop_id : $shop->id }}">
 
             <label>評価:</label>
             <div class="rating" id="star-rating">
-                <img src="{{ asset('img/star-gray.svg') }}" data-value="1" class="star">
-                <img src="{{ asset('img/star-gray.svg') }}" data-value="2" class="star">
-                <img src="{{ asset('img/star-gray.svg') }}" data-value="3" class="star">
-                <img src="{{ asset('img/star-gray.svg') }}" data-value="4" class="star">
-                <img src="{{ asset('img/star-gray.svg') }}" data-value="5" class="star">
+                @for ($i = 1; $i <= 5; $i++)
+                    <img src="{{ asset($i <= (isset($review) ? $review->rating : 0) ? 'img/star-blue.svg' : 'img/star-gray.svg') }}"
+                    data-value="{{ $i }}" class="star">
+                    @endfor
             </div>
-            <input type="hidden" name="rating" id="rating-value" value="0">
-            <textarea name="review" placeholder="カジュアルな夜のお出かけにおすすめのスポット"></textarea>
+            <input type="hidden" name="rating" id="rating-value" value="{{ isset($review) ? $review->rating : 0 }}">
+
+            <textarea name="review" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('review', isset($review) ? $review->review_text : '') }}</textarea>
 
             <label>画像を追加:</label>
             <input type="file" name="photo">
 
-            <button type="submit" class="submit-btn">口コミを投稿</button>
+            @if(isset($review) && $review->photo_path)
+            <p>現在の画像:</p>
+            <img src="{{ asset('storage/' . $review->photo_path) }}" width="100">
+            @endif
+
+            <button type="submit" class="submit-btn">{{ isset($review) ? '口コミを更新' : '口コミを投稿' }}</button>
         </form>
     </div>
 </div>
@@ -84,4 +93,4 @@
         });
     });
 </script>
-        @endsection
+@endsection

@@ -16,8 +16,13 @@ use App\Http\Controllers\ReviewController;
 */
 
 Route::get('/', [ShopController::class, 'index'])->name('shops.index');
-Route::get('/shops/{id}/detail', [ShopController::class, 'book'])->name('shops.detail');
-Route::get('/review', [ReviewController::class, 'create'])->name('review');
-Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
-Route::get('/shops/{shop_id}/reviews', [ReviewController::class, 'index'])->name('shops.reviews');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/shops/{id}/detail', [ShopController::class, 'book'])->name('shops.detail');
+    Route::get('/review', [ReviewController::class, 'create'])->name('review');
+    Route::post('/review', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('/review/{id}/edit', [ReviewController::class, 'edit'])->name('review.edit');
+    Route::put('/review/{id}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
+    Route::get('/shops/{shop_id}/reviews', [ReviewController::class, 'index'])->name('shops.reviews');
+});
 

@@ -13,10 +13,16 @@
         @if($shop->reviews->count() > 0)
         <h2 class="sub__ttl">全ての口コミ情報</h2>
         <div class="reviews">
-            <a href="#">口コミを編集</a>
-            <a href="#">口コミを削除</a>
             @foreach($shop->reviews as $review)
             <div class="review" style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px;">
+                @if($review->user_id === Auth::id())
+                <a href="{{ route('review.edit', ['id' => $review->id]) }}">口コミを編集</a>
+                <form action="{{ route('review.destroy', ['id' => $review->id]) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('本当に削除しますか？');">口コミを削除</button>
+                </form>
+                @endif
                 <div class="reviews__inner" style="flex: 1;">
                     <div class="stars">
                         @for ($i = 1; $i <= 5; $i++)
@@ -37,7 +43,11 @@
         </div>
         @endif
 
-        @if($shop->reviews->count() === 0)
+        @php
+        $userReviewExists = $shop->reviews->where('user_id', Auth::id())->isNotEmpty();
+        @endphp
+
+        @if(!$userReviewExists)
         <a href="{{ route('review', ['shop_id' => $shop->id]) }}" class="review-link">口コミを投稿する</a>
         @endif
     </div>
@@ -77,6 +87,7 @@
         </div>
     </div>
 </div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
