@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('main')
-<x-search></x-search>
+<div class="header__top">
+    <x-header></x-header>
+    <x-search></x-search>
+</div>
 
 <div class="card-container">
     @foreach($shops as $shop)

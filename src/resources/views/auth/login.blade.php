@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('main')
+<x-header></x-header>
+
 <div class="main">
     <form class="auth-card" action="/login" method="post">
         @csrf
