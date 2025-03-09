@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
+use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +29,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/shops/{shop_id}/reviews', [ReviewController::class, 'index'])->name('shops.reviews');
 });
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])
+        ->middleware('guest:admin')
+        ->name('login');
+    Route::post('login', [AuthenticatedSessionController::class, 'store'])
+        ->middleware('guest:admin');
+});
+
+Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::post('/import', [AdminController::class, 'importCsv'])->name('import');
+});
