@@ -9,24 +9,19 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
-        $sort = $request->input('sort', 'random'); // デフォルトはランダム
+        $sort = $request->input('sort', 'random');
 
-        // 全店舗を取得し、リレーションで reviews を取得
         $shops = Shop::with('reviews')->get();
 
-        // 各店舗の評価平均とレビュー数を計算
         $shops->map(function ($shop) {
             $shop->average_rating = $shop->reviews->avg('rating');
             $shop->review_count = $shop->reviews->count();
             return $shop;
         });
 
-        // ソート処理
         if ($sort === 'high') {
-            // 評価が高い順 (評価なしは最後)
             $shops = $shops->sortByDesc(fn($shop) => $shop->average_rating ?? -1)->values();
         } elseif ($sort === 'low') {
-            // 評価が低い順 (評価なしは最後)
             $shops = $shops->sortBy(fn($shop) => $shop->average_rating ?? 9999)->values();
         } elseif ($sort === 'random') {
             $shops = $shops->shuffle();

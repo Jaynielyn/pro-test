@@ -11,16 +11,16 @@
   <img class="xmark" src="{{ asset('img/xmark.svg') }}" onclick="toggleMenu()">
   <div class="menu__inner">
     @auth
-    <a href="/">Home</a>
+    <a class="header__link" href="/">Home</a>
     <form class="form" action="/logout" method="post">
       @csrf
-      <button class="header-nav__button">Logout</button>
+      <button class="logout__button">Logout</button>
     </form>
-    <a href="#">Mypage</a>
+    <a class="header__link" href="#">Mypage</a>
     @else
-    <a href="/">Home</a>
-    <a href="/register">Register</a>
-    <a href="/login">Login</a>
+    <a class="header__link" href="/">Home</a>
+    <a class="header__link" href="/register">Register</a>
+    <a class="header__link" href="/login">Login</a>
     @endauth
   </div>
 </div>

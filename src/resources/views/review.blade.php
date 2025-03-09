@@ -1,61 +1,71 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/review.css') }}">
+@endsection
+
 @section('main')
-<div class="review-container">
-    <div class="left-section">
-        <h2>今回のご利用はいかがでしたか？</h2>
-        <div class="shop-card">
-            <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}">
-            <div class="shop-info">
-                <h3>{{ $shop->name }}</h3>
-                <p>#{{ $shop->region }} #{{ $shop->genre }}</p>
-                <button>詳しくみる</button>
+<div class="review">
+    <div class="review__container">
+        <div class="left__section">
+            <x-header></x-header>
+            <h2>今回のご利用はい<br>かがでしたか？</h2>
+            <div class="shop__card">
+                <img class="shop__img" src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}">
+                <div class="shop__info">
+                    <h3>{{ $shop->name }}</h3>
+                    <p class="hashtag">#{{ $shop->region }} #{{ $shop->genre }}</p>
+                    <button class="info__btn">詳しくみる</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="right-section">
-        <h2>体験を評価してください</h2>
+        <!-- 右側 -->
+        <div class="right__section">
+            <h2>体験を評価してください</h2>
 
-        @if ($errors->any())
-        <div class="error-messages">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
-        <form action="{{ isset($review) ? route('reviews.update', ['id' => $review->id]) : route('reviews.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @if(isset($review))
-            @method('PUT') {{-- 更新時 --}}
-            @endif
-
-            <input type="hidden" name="shop_id" value="{{ isset($review) ? $review->shop_id : $shop->id }}">
-
-            <label>評価:</label>
-            <div class="rating" id="star-rating">
-                @for ($i = 1; $i <= 5; $i++)
-                    <img src="{{ asset($i <= (isset($review) ? $review->rating : 0) ? 'img/star-blue.svg' : 'img/star-gray.svg') }}"
-                    data-value="{{ $i }}" class="star">
-                    @endfor
+            @if ($errors->any())
+            <div class="error__messages">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-            <input type="hidden" name="rating" id="rating-value" value="{{ isset($review) ? $review->rating : 0 }}">
-
-            <textarea name="review" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('review', isset($review) ? $review->review_text : '') }}</textarea>
-
-            <label>画像を追加:</label>
-            <input type="file" name="photo">
-
-            @if(isset($review) && $review->photo_path)
-            <p>現在の画像:</p>
-            <img src="{{ asset('storage/' . $review->photo_path) }}" width="100">
             @endif
 
-            <button type="submit" class="submit-btn">{{ isset($review) ? '口コミを更新' : '口コミを投稿' }}</button>
-        </form>
+            <form action="{{ isset($review) ? route('reviews.update', ['id' => $review->id]) : route('reviews.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @if(isset($review))
+                @method('PUT') {{-- 更新時 --}}
+                @endif
+
+                <input type="hidden" name="shop_id" value="{{ isset($review) ? $review->shop_id : $shop->id }}">
+
+                <div class="rating" id="star-rating">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <img src="{{ asset($i <= (isset($review) ? $review->rating : 0) ? 'img/star-blue.svg' : 'img/star-gray.svg') }}"
+                        data-value="{{ $i }}" class="star">
+                        @endfor
+                </div>
+                <input type="hidden" name="rating" id="rating-value" value="{{ isset($review) ? $review->rating : 0 }}">
+
+                <label class="review__label">口コミを投稿</label>
+                <textarea name="review" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('review', isset($review) ? $review->review_text : '') }}</textarea>
+
+                <label class="review__label">画像を追加</label>
+                <input type="file" name="photo">
+
+                @if(isset($review) && $review->photo_path)
+                <p>画像の追加:</p>
+                <img src="{{ asset('storage/' . $review->photo_path) }}" width="100">
+                @endif
+
+                <div class="button">
+                    <button type="submit" class="submit__btn">{{ isset($review) ? '口コミを更新' : '口コミを投稿' }}</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

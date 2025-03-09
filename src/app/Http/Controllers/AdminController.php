@@ -10,35 +10,25 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    /**
-     * 管理者ダッシュボードの表示
-     */
     public function dashboard()
     {
         return view('admin.dashboard');
     }
 
-    /**
-     * CSVインポート処理
-     */
     public function importCsv(Request $request)
     {
-        // CSVファイルのバリデーション
         $request->validate([
-            'csv_file' => 'required|mimes:csv,txt|max:10240', // 10MBまでのCSVのみ許可
+            'csv_file' => 'required|mimes:csv,txt|max:10240',
         ]);
 
-        // CSVの読み込み
         $csvFile = $request->file('csv_file');
         $csvPath = $csvFile->getRealPath();
         $csv = Reader::createFromPath($csvPath, 'r');
-        $csv->setHeaderOffset(0); // ヘッダーをスキップ
-
-        $records = $csv->getRecords(); // CSVのデータ取得
+        $csv->setHeaderOffset(0);
+        $records = $csv->getRecords();
         $errors = [];
 
         foreach ($records as $index => $record) {
-            // バリデーション
             $validator = Validator::make($record, [
                 '店舗名' => 'required|max:50',
                 '地域' => 'required|in:東京都,大阪府,福岡県',
@@ -52,7 +42,6 @@ class AdminController extends Controller
                 continue;
             }
 
-            // 画像URLのチェック & 保存
             $imagePath = null;
             if (!empty($record['画像URL'])) {
                 $imagePath = $this->storeImage($record['画像URL']);
@@ -62,7 +51,6 @@ class AdminController extends Controller
                 }
             }
 
-            // データベースに保存
             Shop::create([
                 'name' => $record['店舗名'],
                 'region' => $record['地域'],
@@ -79,9 +67,6 @@ class AdminController extends Controller
         return redirect()->route('admin.dashboard')->with('success', '店舗情報をインポートしました。');
     }
 
-    /**
-     * 画像を保存する処理
-     */
     private function storeImage($imageUrl)
     {
         try {
@@ -90,7 +75,7 @@ class AdminController extends Controller
             $extension = pathinfo($imageName, PATHINFO_EXTENSION);
 
             if (!in_array($extension, ['jpg', 'jpeg', 'png'])) {
-                return false; // 非対応の拡張子
+                return false;
             }
 
             $path = 'shops/' . uniqid() . '.' . $extension;

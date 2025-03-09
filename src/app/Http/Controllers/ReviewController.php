@@ -9,20 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    // 口コミ一覧ページ
     public function index($shop_id)
     {
         $shop = Shop::with('reviews')->findOrFail($shop_id);
         return view('reviews_page', compact('shop'));
     }
 
-    // 口コミ作成画面
     public function create(Request $request)
     {
         $shop_id = $request->query('shop_id');
         $shop = Shop::findOrFail($shop_id);
 
-        // すでに投稿済みなら編集画面へリダイレクト
         $existingReview = Review::where('shop_id', $shop_id)->where('user_id', Auth::id())->first();
         if ($existingReview) {
             return redirect()->route('review.edit', ['id' => $existingReview->id])
@@ -32,7 +29,6 @@ class ReviewController extends Controller
         return view('review', compact('shop'));
     }
 
-    // 口コミ投稿処理
     public function store(Request $request)
     {
         $request->validate([
@@ -42,7 +38,6 @@ class ReviewController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png|max:2048',
         ]);
 
-        // 既に口コミを投稿済みかチェック
         $existingReview = \App\Models\Review::where('shop_id', $request->shop_id)
             ->where('user_id', auth()->id())
             ->first();
@@ -70,14 +65,13 @@ class ReviewController extends Controller
     }
 
 
-    // 口コミ編集画面
     public function edit($id)
     {
         $review = \App\Models\Review::where('id', $id)
-            ->where('user_id', auth()->id()) // 自分の口コミのみ編集可能
+            ->where('user_id', auth()->id())
             ->firstOrFail();
 
-        $shop = \App\Models\Shop::find($review->shop_id); // 関連する店舗情報を取得
+        $shop = \App\Models\Shop::find($review->shop_id);
 
         return view('review', compact('review', 'shop'));
     }
@@ -92,7 +86,7 @@ class ReviewController extends Controller
         ]);
 
         $review = \App\Models\Review::where('id', $id)
-            ->where('user_id', auth()->id()) // 自分の口コミのみ更新可能
+            ->where('user_id', auth()->id())
             ->firstOrFail();
 
         $review->rating = $request->rating;
@@ -114,7 +108,7 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         $review = \App\Models\Review::where('id', $id)
-            ->where('user_id', auth()->id()) // 自分の口コミのみ削除可能
+            ->where('user_id', auth()->id())
             ->firstOrFail();
 
         $review->delete();

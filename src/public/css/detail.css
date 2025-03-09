@@ -1,17 +1,35 @@
-.container {
+.detail {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
 }
 
-.container__header {
+.detail__top {
     display: flex;
+    align-items: center;
+    margin-top: 30px;
 }
 
-/* 左側の店舗情報 */
-.shop-info {
+.back__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.detail__ttl {
+    margin-left: 20px;
+}
+
+.shop__info {
     width: 100%;
     padding: 40px;
     background-color: white;
@@ -37,29 +55,48 @@ h1 {
     font-size: 28px;
 }
 
-.shop-image {
-    width: 100%;
-    border-radius: 8px;
-    margin: 20px 0;
+.shop__image {
+    width: 90%;
+    margin-top: 20px;
 }
 
 .tags {
     color: #555;
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-top: 30px;
+    text-align: left;
 }
 
 .description {
     font-size: 16px;
     color: #333;
     line-height: 1.5;
+    margin-top: 30px;
 }
 
-.review-link {
+.edit__link {
+    display: flex;
+    align-items: center;
+}
+
+.edit__link a {
+    color: #000000;
+    font-size: 15px;
+}
+
+.delete {
+    background: none;
+    border: none;
+    text-decoration-line: underline;
+    color: #000000;
+    font-size: 15px;
+
+}
+
+.review__link {
     display: block;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
+    margin-top: 30px;
+    color: #000000;
     font-size: 16px;
 }
 
@@ -72,7 +109,7 @@ h1 {
     display: flex;
 }
 
-.star-img {
+.star__img {
     width: 3%;
     height: 3%;
 }
@@ -94,15 +131,18 @@ h1 {
 }
 
 /* 右側の予約フォーム */
-.reservation-form {
-    width: 40%;
-    height: 80%;
+.reservation__form {
+    width: 100%;
+    height: 85%;
     background-color: #3572F2;
-    padding: 40px;
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: stretch;
+}
+
+.form {
+    padding: 40px;
 }
 
 h2 {
@@ -115,19 +155,25 @@ form {
     flex-direction: column;
 }
 
-label {
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-input,
-select {
+input,select {
     padding: 12px;
     margin-top: 5px;
     border-radius: 5px;
     border: none;
     width: 100%;
     font-size: 16px;
+}
+
+input {
+    width: 30%;
+}
+
+.sub__ttl {
+    background-color: #007bff;
+    color: white;
+    font-size: 30px;
+    padding: 20px;
+    text-align: center;
 }
 
 .summary {
@@ -137,27 +183,115 @@ select {
     border-radius: 5px;
 }
 
-.reserve-btn {
-    background-color: white;
-    color: #3572F2;
-    padding: 15px;
+.summary__inner {
+    margin-top: 10px;
+}
+
+.reserve__btn {
+    color: white;
+    background-color: #004cff;
     margin-top: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
+    margin-top: auto;
+    width: 100%;
+    height: 8%;
 }
 
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
+    .detail {
         height: auto;
+        flex-direction: column;
     }
 
-    .shop-info,
-    .reservation-form {
-        width: 100%;
+    .detail__top {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 10px;
+    }
+
+    .back__button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .detail__ttl {
+        margin-left: 0;
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    .shop__info {
         padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .shop__image {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .tags {
+        font-size: 14px;
+    }
+
+    .description {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .edit__link a {
+        font-size: 14px;
+    }
+
+    .delete {
+        font-size: 14px;
+    }
+
+    .review__link {
+        font-size: 14px;
+    }
+
+    .reservation__form {
+        height: auto;
+        padding: 20px;
+    }
+
+    .form {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    input,
+    select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    .sub__ttl {
+        font-size: 20px;
+        padding: 15px;
+    }
+
+    .summary {
+        padding: 10px;
+    }
+
+    .reserve__btn {
+        font-size: 16px;
+        padding: 12px;
     }
 }
