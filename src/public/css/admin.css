@@ -1,0 +1,51 @@
+.dashboard__ttl {
+    font-size: 30px;
+    text-align: center;
+}
+
+.reviews__link {
+    font-size: 25px;
+    color: #3b82f6;
+}
+
+.csv__form {
+    margin-top: 50px;
+}
+
+.csv__ttl {
+    font-size: 20px;
+}
+
+#csv-table td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 700px;
+    white-space: normal;
+}
+
+.form__inner,
+.btn__secondary {
+    margin-top: 20px;
+}
+
+.btn__secondary {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    background-color: #3b82f6;
+}
+
+.preview {
+    margin-top: 50px;
+    border: 1px solid black;
+}
+
+.table {
+    width: 100%;
+}
+
+#csv-table th {
+    padding: 10px;
+    text-align: left;
+}

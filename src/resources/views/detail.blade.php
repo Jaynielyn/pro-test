@@ -11,7 +11,7 @@
         <div class="detail__top">
             <button class="back__button" onclick="history.back()">
                 <
-                    </button>
+            </button>
                     <h1 class="detail__ttl">{{ $shop->name }}</h1>
         </div>
 

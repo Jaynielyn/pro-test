@@ -5,14 +5,18 @@
 @endsection
 
 @section('main')
-<h1>口コミ一覧</h1>
+<h1 class="admin__ttl">口コミ一覧</h1>
 
-<div class="card-container">
+<button class="back__button" onclick="history.back()">
+    <
+</button>
+
+<div class="card__container">
     @foreach($shops as $shop)
     <div class="card">
         <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}">
 
-        <div class="card-content">
+        <div class="card__content">
             <h3>{{ $shop->name }}</h3>
             <p>#{{ $shop->region }} #{{ $shop->genre }}</p>
 
@@ -26,6 +30,4 @@
     </div>
     @endforeach
 </div>
-
-
-@endsection
+ @endsection

@@ -43,7 +43,7 @@
                 <label class="review__label">口コミを投稿</label>
                 <textarea name="review" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('review', isset($review) ? $review->review_text : '') }}</textarea>
                 @error('review')
-                <span class="text-red-500">{{ $message }}</span>
+                <span class="error">{{ $message }}</span>
                 @enderror
 
                 <label class="review__label">画像を追加</label>
@@ -54,7 +54,7 @@
                 <img src="{{ asset('storage/' . $review->photo_path) }}" width="100">
                 @endif
                 @error('photo')
-                <span class="text-red-500">{{ $message }}</span>
+                <span class="error">{{ $message }}</span>
                 @enderror
 
                 <div class="button">
@@ -70,14 +70,13 @@
         const stars = document.querySelectorAll(".star");
         const ratingValue = document.getElementById("rating-value");
 
-        let selectedCount = 0; // 現在の評価（青い星の数）
+        let selectedCount = 0;
 
         stars.forEach((star, index) => {
             star.addEventListener("click", function() {
                 let value = parseInt(this.getAttribute("data-value"));
 
                 if (value === selectedCount) {
-                    // 右から順に消す（選択済みの最後の星を消す）
                     for (let i = stars.length - 1; i >= 0; i--) {
                         if (stars[i].src.includes("star-blue.svg")) {
                             stars[i].src = "{{ asset('img/star-gray.svg') }}";
@@ -86,14 +85,12 @@
                         }
                     }
                 } else {
-                    // 星を選択（青くする）
                     for (let i = 0; i < value; i++) {
                         stars[i].src = "{{ asset('img/star-blue.svg') }}";
                     }
-                    selectedCount = value; // 選択数更新
+                    selectedCount = value;
                 }
 
-                // 更新
                 ratingValue.value = selectedCount;
             });
         });

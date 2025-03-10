@@ -13,18 +13,18 @@
         </div>
         <!-- 選択した情報を表示 -->
         @if(request('sort'))
-        <div class="selected-info">
+        <div class="selected__info">
             <p>情報検索：{{ request('sort') == 'random' ? 'ランダム' : (request('sort') == 'high' ? '評価が高い順' : '評価が低い順') }}</p>
         </div>
         @endif
     </div>
 
-    <div class="card-container">
+    <div class="card__container">
         @foreach($shops as $shop)
         <div class="card">
             <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}">
 
-            <div class="card-content">
+            <div class="card__content">
                 <h3>{{ $shop->name }}
                     <span class="rating">
                         ★{{ number_format($shop->average_rating ?? 0, 2) }}
