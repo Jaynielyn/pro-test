@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class ReviewRequest extends FormRequest
+{
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        return [
+            'shop_id' => 'required|exists:shops,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'nullable|string|max:400',
+            'photo' => 'nullable|image|mimes:jpeg,png|max:2048',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'review.max' => '口コミは400文字以内で入力してください。',
+            'photo.image' => '画像ファイルを選択してください。',
+            'photo.mimes' => 'アップロードできる画像はjpegまたはpngのみです。',
+            'photo.max' => '画像のサイズは2MB以下にしてください。',
+        ];
+    }
+}

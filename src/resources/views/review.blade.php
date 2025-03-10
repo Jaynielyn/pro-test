@@ -24,16 +24,6 @@
         <div class="right__section">
             <h2>体験を評価してください</h2>
 
-            @if ($errors->any())
-            <div class="error__messages">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
             <form action="{{ isset($review) ? route('reviews.update', ['id' => $review->id]) : route('reviews.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if(isset($review))
@@ -52,6 +42,9 @@
 
                 <label class="review__label">口コミを投稿</label>
                 <textarea name="review" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('review', isset($review) ? $review->review_text : '') }}</textarea>
+                @error('review')
+                <span class="text-red-500">{{ $message }}</span>
+                @enderror
 
                 <label class="review__label">画像を追加</label>
                 <input type="file" name="photo">
@@ -60,6 +53,9 @@
                 <p>画像の追加:</p>
                 <img src="{{ asset('storage/' . $review->photo_path) }}" width="100">
                 @endif
+                @error('photo')
+                <span class="text-red-500">{{ $message }}</span>
+                @enderror
 
                 <div class="button">
                     <button type="submit" class="submit__btn">{{ isset($review) ? '口コミを更新' : '口コミを投稿' }}</button>

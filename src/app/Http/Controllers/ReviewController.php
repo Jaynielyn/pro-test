@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ReviewRequest;
 
 class ReviewController extends Controller
 {
@@ -29,7 +30,7 @@ class ReviewController extends Controller
         return view('review', compact('shop'));
     }
 
-    public function store(Request $request)
+    public function store(ReviewRequest $request)
     {
         $request->validate([
             'shop_id' => 'required|exists:shops,id',

@@ -5,6 +5,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminReviewsController;
 
 
 /*
@@ -40,4 +41,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::post('/import', [AdminController::class, 'importCsv'])->name('import');
+
+    Route::get('/reviews', [AdminReviewsController::class, 'index'])->name('reviews.index');
+    Route::get('/reviews/{shop}/delete', [AdminReviewsController::class, 'delete'])->name('reviews.delete');
+    Route::delete('/reviews/{review}', [AdminReviewsController::class, 'destroy'])->name('reviews.destroy');
 });
