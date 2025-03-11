@@ -1,3 +1,7 @@
+.dashboard {
+    padding: 20px;
+}
+
 .dashboard__ttl {
     font-size: 30px;
     text-align: center;
@@ -21,6 +25,7 @@
     overflow-wrap: break-word;
     max-width: 700px;
     white-space: normal;
+    margin-top: 10px;
 }
 
 .form__inner,
@@ -48,4 +53,54 @@
 #csv-table th {
     padding: 10px;
     text-align: left;
+}
+
+@media (max-width: 750px) {
+    .dashboard {
+        padding: 15px;
+    }
+
+    .dashboard__ttl {
+        font-size: 24px;
+    }
+
+    .reviews__link {
+        font-size: 20px;
+    }
+
+    .csv__form {
+        margin-top: 30px;
+    }
+
+    .csv__ttl {
+        font-size: 18px;
+    }
+
+    #csv-table td {
+        max-width: 100%;
+    }
+
+    .form__inner,
+    .btn__secondary {
+        margin-top: 15px;
+    }
+
+    .btn__secondary {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    .preview {
+        margin-top: 30px;
+    }
+
+    .table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    #csv-table th {
+        padding: 8px;
+    }
 }

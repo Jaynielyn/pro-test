@@ -23,8 +23,7 @@ class ReviewController extends Controller
 
         $existingReview = Review::where('shop_id', $shop_id)->where('user_id', Auth::id())->first();
         if ($existingReview) {
-            return redirect()->route('review.edit', ['id' => $existingReview->id])
-                ->with('error', 'すでに口コミを投稿済みです。編集してください。');
+            return redirect()->route('review.edit', ['id' => $existingReview->id]);
         }
 
         return view('review', compact('shop'));
@@ -32,20 +31,12 @@ class ReviewController extends Controller
 
     public function store(ReviewRequest $request)
     {
-        $request->validate([
-            'shop_id' => 'required|exists:shops,id',
-            'rating' => 'required|integer|min:1|max:5',
-            'review' => 'nullable|string|max:400',
-            'photo' => 'nullable|image|mimes:jpeg,png|max:2048',
-        ]);
-
         $existingReview = \App\Models\Review::where('shop_id', $request->shop_id)
             ->where('user_id', auth()->id())
             ->first();
 
         if ($existingReview) {
-            return redirect()->route('shops.detail', ['id' => $request->shop_id])
-                ->with('error', 'この店舗には既に口コミを投稿しています。');
+            return redirect()->route('shops.detail', ['id' => $request->shop_id]);
         }
 
         $review = new \App\Models\Review();
@@ -61,10 +52,8 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect()->route('shops.detail', ['id' => $request->shop_id])
-            ->with('success', '口コミが投稿されました！');
+        return redirect()->route('shops.detail', ['id' => $request->shop_id]);
     }
-
 
     public function edit($id)
     {
@@ -77,16 +66,8 @@ class ReviewController extends Controller
         return view('review', compact('review', 'shop'));
     }
 
-    // 口コミ更新処理
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'review' => 'nullable|string|max:400',
-            'photo' => 'nullable|image|mimes:jpeg,png|max:2048',
-        ]);
-
-        $review = \App\Models\Review::where('id', $id)
+    {$review = \App\Models\Review::where('id', $id)
             ->where('user_id', auth()->id())
             ->firstOrFail();
 
@@ -100,12 +81,9 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect()->route('shops.detail', ['id' => $review->shop_id])
-            ->with('success', '口コミが更新されました！');
+        return redirect()->route('shops.detail', ['id' => $review->shop_id]);
     }
 
-
-    // 口コミ削除処理
     public function destroy($id)
     {
         $review = \App\Models\Review::where('id', $id)
@@ -114,7 +92,6 @@ class ReviewController extends Controller
 
         $review->delete();
 
-        return redirect()->route('shops.detail', ['id' => $review->shop_id])
-            ->with('success', '口コミが削除されました！');
+        return redirect()->route('shops.detail', ['id' => $review->shop_id]);
     }
 }

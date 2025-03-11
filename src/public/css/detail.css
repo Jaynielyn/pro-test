@@ -203,97 +203,111 @@ input {
     height: 8%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .detail {
         height: auto;
         flex-direction: column;
+        padding: 0;
+        margin: 0 auto;
+        font-size: 14px;
+        width: 100%;
     }
 
     .detail__top {
         flex-direction: column;
         align-items: flex-start;
-        margin-top: 10px;
+        margin-top: 5px;
+        padding: 0 5px;
+        width: 100%;
     }
 
     .back__button {
-        font-size: 14px;
-        padding: 8px 12px;
+        font-size: 12px;
+        padding: 6px 10px;
     }
 
     .detail__ttl {
         margin-left: 0;
-        margin-top: 10px;
-        font-size: 20px;
+        margin-top: 5px;
+        font-size: 18px;
     }
 
     .shop__info {
-        padding: 20px;
+        padding: 10px;
+        margin: 0 auto;
+        width: 90%;
     }
 
     h1 {
-        font-size: 22px;
+        font-size: 20px;
+        margin: 0;
     }
 
     .shop__image {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 5px;
+        padding: 0;
     }
 
     .tags {
-        font-size: 14px;
+        font-size: 12px;
+        margin-top: 10px;
     }
 
     .description {
-        font-size: 14px;
-        margin-top: 20px;
+        font-size: 12px;
+        margin-top: 10px;
     }
 
     .edit__link a {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .delete {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .review__link {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .reservation__form {
         height: auto;
-        padding: 20px;
+        padding: 10px;
+        margin: 0 auto;
+        width: 95%;
     }
 
     .form {
-        padding: 20px;
+        padding: 10px;
     }
 
     h2 {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     input,
     select {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    input {
+        font-size: 12px;
+        padding: 8px;
         width: 100%;
     }
 
+    input {
+        width: 30%;
+    }
+
     .sub__ttl {
-        font-size: 20px;
-        padding: 15px;
+        font-size: 18px;
+        padding: 8px;
     }
 
     .summary {
-        padding: 10px;
+        padding: 8px;
     }
 
     .reserve__btn {
-        font-size: 16px;
-        padding: 12px;
+        font-size: 14px;
+        padding: 10px;
     }
 }

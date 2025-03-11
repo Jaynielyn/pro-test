@@ -5,7 +5,7 @@
 
 .shop__info-ttl {
     font-size: 30px;
-    text-align: left;
+    text-align: center;
 }
 
 .shop__info {
@@ -63,12 +63,7 @@ h4 {
     margin-top: 10px;
 }
 
-@media (max-width: 768px) {
-    .delete__ttl {
-        font-size: 24px;
-        padding: 10px;
-    }
-
+@media (max-width: 750px) {
     .shop__info {
         max-width: 100%;
         margin: 0 auto;
@@ -78,21 +73,13 @@ h4 {
     .shop__info p {
         margin-top: 10px;
         text-align: left;
-    }
-
-    .back__button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 12px;
-        margin-left: 0;
-        font-size: 14px;
+        padding: 0 20px;
     }
 
     h4 {
         border-top: 1px solid black;
         margin-top: 30px;
-        padding: 15px;
+        padding: 20px;
     }
 
     .info__inner {

@@ -24,7 +24,7 @@ class ReviewRequest extends FormRequest
     public function messages()
     {
         return [
-            'review.max' => '口コミは400文字以内で入力してください。',
+            'review.max' => 'レビューは、400文字以下にしてください。',
             'photo.image' => '画像ファイルを選択してください。',
             'photo.mimes' => 'アップロードできる画像はjpegまたはpngのみです。',
             'photo.max' => '画像のサイズは2MB以下にしてください。',
