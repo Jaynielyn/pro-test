@@ -2,11 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .admin__ttl {
     font-size: 30px;
     padding: 20px;
+    margin: 0;
 }
 
 .back__button {
@@ -28,13 +30,19 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 80px;
+    padding: 0 20px;
     background-color: white;
     margin-top: 30px;
+    box-sizing: border-box;
+}
+
+.x-search {
+    max-width: 300px;
+    flex: 0 1 auto;
 }
 
 .selected__info {
-    padding: 0 80px;
+    padding: 0 20px;
     margin-top: 30px;
 }
 
@@ -52,9 +60,9 @@ body {
     overflow: hidden;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: white;
-    width: 70%;
-    height: 100%;
-    margin: 0 80px;
+    width: calc(100% - 40px);
+    height: auto;
+    margin: 0 20px;
 }
 
 .card img {

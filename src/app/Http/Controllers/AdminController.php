@@ -7,6 +7,7 @@ use App\Models\Shop;
 use Illuminate\Support\Facades\Validator;
 use League\Csv\Reader;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\CsvImportRequest;
 
 class AdminController extends Controller
 {
@@ -15,12 +16,8 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function importCsv(Request $request)
+    public function importCsv(CsvImportRequest $request)
     {
-        $request->validate([
-            'csv_file' => 'required|mimes:csv,txt|max:10240',
-        ]);
-
         $csvFile = $request->file('csv_file');
         $csvPath = $csvFile->getRealPath();
         $csv = Reader::createFromPath($csvPath, 'r');
@@ -29,13 +26,7 @@ class AdminController extends Controller
         $errors = [];
 
         foreach ($records as $index => $record) {
-            $validator = Validator::make($record, [
-                '店舗名' => 'required|max:50',
-                '地域' => 'required|in:東京都,大阪府,福岡県',
-                'ジャンル' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
-                '店舗概要' => 'required|max:400',
-                '画像URL' => 'nullable|url',
-            ]);
+            $validator = Validator::make($record, (new CsvImportRequest())->rules());
 
             if ($validator->fails()) {
                 $errors[] = "行 " . ($index + 1) . ": " . implode(", ", $validator->errors()->all());
@@ -64,7 +55,7 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($errors);
         }
 
-        return redirect()->route('admin.dashboard')->with('success', '店舗情報をインポートしました。');
+        return redirect()->route('admin.dashboard');
     }
 
     private function storeImage($imageUrl)

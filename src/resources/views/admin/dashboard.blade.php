@@ -10,6 +10,17 @@
 
     <a class="reviews__link" href="{{ route('admin.reviews.index') }}">口コミ管理</a>
 
+    <!-- エラーメッセージ表示 -->
+    @if ($errors->any())
+    <div class="error-messages">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <!-- CSVインポートフォーム -->
     <div class="csv__form">
         <h2 class="csv__ttl">CSVインポート</h2>
@@ -61,52 +72,48 @@
                     const columns = line.split(',');
                     const errorMessages = [];
 
-                    const shopName = columns[0].trim();
+                    const shopName = columns[0]?.trim() || '';
                     if (shopName.length > 50) {
                         errorMessages.push('店舗名は50文字以内で入力してください。');
                     }
 
-                    const region = columns[1].trim();
+                    const region = columns[1]?.trim() || '';
                     const validRegions = ['東京都', '大阪府', '福岡県'];
                     if (!validRegions.includes(region)) {
                         errorMessages.push('地域は「東京都」「大阪府」「福岡県」のいずれかで入力してください。');
                     }
 
-                    const genre = columns[2].trim();
+                    const genre = columns[2]?.trim() || '';
                     const validGenres = ['寿司', '焼肉', 'イタリアン', '居酒屋', 'ラーメン'];
                     if (!validGenres.includes(genre)) {
                         errorMessages.push('ジャンルは「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれかで入力してください。');
                     }
 
-                    const description = columns[3].trim();
+                    const description = columns[3]?.trim() || '';
                     if (description.length > 400) {
                         errorMessages.push('店舗概要は400文字以内で入力してください。');
                     }
 
-                    const imageUrl = columns[4].trim();
+                    const imageUrl = columns[4]?.trim() || '';
                     const imageExtension = imageUrl.split('.').pop().toLowerCase();
-                    if (!['jpg', 'jpeg', 'png'].includes(imageExtension)) {
+                    if (imageUrl && !['jpg', 'jpeg', 'png'].includes(imageExtension)) {
                         errorMessages.push('画像URLはjpg、jpeg、pngのみ対応しています。');
                     }
 
-                    const cells = [
-                        shopName,
-                        region,
-                        genre,
-                        description,
-                        imageUrl,
-                        errorMessages.length ? errorMessages.join('<br>') : '問題なし'
-                    ];
+                    const cells = [shopName, region, genre, description, imageUrl];
 
-                    cells.forEach((cellData, index) => {
+                    cells.forEach(cellData => {
                         const td = document.createElement('td');
-                        if (index === 5 && errorMessages.length === 0) {
-                            td.innerHTML = '';
-                        } else {
-                            td.innerHTML = cellData;
-                        }
+                        td.innerHTML = cellData;
                         row.appendChild(td);
                     });
+
+                    if (errorMessages.length > 0) {
+                        const errorTd = document.createElement('td');
+                        errorTd.innerHTML = errorMessages.join('<br>');
+                        errorTd.classList.add('error');
+                        row.appendChild(errorTd);
+                    }
 
                     tbody.appendChild(row);
                 });

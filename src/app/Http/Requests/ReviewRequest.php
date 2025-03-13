@@ -24,6 +24,10 @@ class ReviewRequest extends FormRequest
     public function messages()
     {
         return [
+            'rating.required' => '評価を選択してください。',
+            'rating.integer' => '評価は数値で入力してください。',
+            'rating.min' => '評価は1以上の数値を選択してください。',
+            'rating.max' => '評価は5以下の数値を選択してください。',
             'review.max' => 'レビューは、400文字以下にしてください。',
             'photo.image' => '画像ファイルを選択してください。',
             'photo.mimes' => 'アップロードできる画像はjpegまたはpngのみです。',

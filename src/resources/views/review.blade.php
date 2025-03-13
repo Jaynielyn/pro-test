@@ -39,6 +39,10 @@
             </div>
             <input type="hidden" name="rating" id="rating-value" value="{{ isset($review) ? $review->rating : 0 }}">
 
+            @error('rating')
+            <span class="error" style="color: red;">{{ $message }}</span>
+            @enderror
+
             <label class="review__label">口コミを投稿</label>
             <textarea name="review" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('review', isset($review) ? $review->review_text : '') }}</textarea>
             @error('review')
