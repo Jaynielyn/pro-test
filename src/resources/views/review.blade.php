@@ -14,7 +14,7 @@
             <div class="shop__info">
                 <h3>{{ $shop->name }}</h3>
                 <p class="hashtag">#{{ $shop->region }} #{{ $shop->genre }}</p>
-                <button class="info__btn">詳しくみる</button>
+                <button class="info__btn" onclick="history.back()">詳しくみる</button>
             </div>
         </div>
     </div>

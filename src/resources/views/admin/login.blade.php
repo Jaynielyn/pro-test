@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+
 @section('main')
     <form method="POST" action="{{ route('admin.login') }}">
         @csrf
