@@ -6,7 +6,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminReviewsController;
-
+use App\Http\Controllers\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/review/{id}', [ReviewController::class, 'update'])->name('reviews.update');
     Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
     Route::get('/shops/{shop_id}/reviews', [ReviewController::class, 'index'])->name('shops.reviews');
+    Route::get('/mypage', [MypageController::class, 'mypage']);
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {

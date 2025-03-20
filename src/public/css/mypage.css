@@ -1,0 +1,40 @@
+.mypage {
+    height: 100vh;
+    width: 100vw;
+}
+
+.mypage__name {
+    width: 60%;
+    text-align: right;
+}
+
+.mypage__content {
+    display: flex;
+    height: 100%;
+}
+
+/*左側*/
+.left__page {
+    width: 40%;
+}
+
+.book__box {
+    width: 80%;
+    border-radius: 5px;
+    background-color: #007bff;
+}
+
+.book__item {
+    display: flex;
+    color: white;
+}
+
+.item__clock {
+    display: flex;
+    align-items: center;
+}
+
+/*右側*/
+.right__page {
+    width: 60%;
+}

@@ -16,7 +16,7 @@
       @csrf
       <button class="logout__button">Logout</button>
     </form>
-    <a class="header__link" href="#">Mypage</a>
+    <a class="header__link" href="/mypage">Mypage</a>
     @else
     <a class="header__link" href="/">Home</a>
     <a class="header__link" href="/register">Register</a>
