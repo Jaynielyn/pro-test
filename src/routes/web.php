@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminReviewsController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/review/{id}', [ReviewController::class, 'update'])->name('reviews.update');
     Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
     Route::get('/shops/{shop_id}/reviews', [ReviewController::class, 'index'])->name('shops.reviews');
+    Route::post('/like', [LikeController::class, 'toggle']);
     Route::get('/mypage', [MypageController::class, 'mypage']);
 });
 

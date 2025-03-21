@@ -33,9 +33,61 @@
                 </h3>
                 <p>#{{ $shop->region }} #{{ $shop->genre }}</p>
                 <a href="{{ route('shops.detail', ['id' => $shop->id]) }}" class="details">詳しく見る</a>
+                <button class="like-button" data-shop-id="{{ $shop->id }}" @guest disabled @endguest>
+                    @auth
+                    @if(Auth::user()->isLikedBy($shop))
+                    <img src="{{ asset('img/heart-pink.svg') }}" class="heart-icon" alt="いいね済み">
+                    @else
+                    <img src="{{ asset('img/heart-gray.svg') }}" class="heart-icon" alt="未いいね">
+                    @endif
+                    @else
+                    <img src="{{ asset('img/heart-gray.svg') }}" class="heart-icon" alt="未いいね">
+                    @endauth
+                </button>
+
             </div>
         </div>
         @endforeach
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".like-button").forEach(button => {
+            button.addEventListener("click", function() {
+                // 未ログイン時の処理
+                if (this.hasAttribute("disabled")) {
+                    alert("いいねするにはログインしてください");
+                    return;
+                }
+
+                const shopId = this.dataset.shopId;
+                const button = this;
+                const img = button.querySelector(".heart-icon");
+
+                fetch("/like", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                        },
+                        body: JSON.stringify({
+                            shop_id: shopId
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.liked) {
+                            img.src = "/img/heart-pink.svg";
+                            img.alt = "いいね済み";
+                        } else {
+                            img.src = "/img/heart-gray.svg";
+                            img.alt = "未いいね";
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            });
+        });
+    });
+</script>
 @endsection
