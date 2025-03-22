@@ -8,6 +8,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminReviewsController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ReservationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/shops/{shop_id}/reviews', [ReviewController::class, 'index'])->name('shops.reviews');
     Route::post('/like', [LikeController::class, 'toggle']);
     Route::get('/mypage', [MypageController::class, 'mypage']);
+    Route::post('/shops/{shop}/reservations', [ReservationController::class, 'store'])->name('reserve.store');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
