@@ -44,4 +44,9 @@ class Shop extends Model
     {
         return $this->likes()->where('user_id', $user->id)->exists();
     }
+
+    public function usersWhoLiked()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'shop_id', 'user_id');
+    }
 }

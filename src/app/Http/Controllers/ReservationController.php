@@ -26,4 +26,13 @@ class ReservationController extends Controller
 
         return redirect()->route('shops.index', $shop->id)->with('success', '予約が完了しました');
     }
+
+    public function destroy(Reservation $reservation)
+    {
+        // 予約を削除
+        $reservation->delete();
+
+        // リダイレクトまたはメッセージを表示
+        return redirect()->back();
+    }
 }

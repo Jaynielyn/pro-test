@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/like', [LikeController::class, 'toggle']);
     Route::get('/mypage', [MypageController::class, 'mypage']);
     Route::post('/shops/{shop}/reservations', [ReservationController::class, 'store'])->name('reserve.store');
+    Route::delete('/reservation/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
