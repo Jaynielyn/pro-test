@@ -11,7 +11,20 @@ class ShopController extends Controller
     {
         $sort = $request->input('sort', 'random');
 
-        $shops = Shop::with('reviews')->get();
+        $filters = [
+            'name' => $request->input('name', null),
+            'region' => $request->input('region', 'all'),
+            'genre' => $request->input('genre', 'all'),
+        ];
+
+        if ($filters['region'] === 'all') unset($filters['region']);
+        if ($filters['genre'] === 'all') unset($filters['genre']);
+
+        $shops = Shop::with('reviews')
+            ->when(!empty($filters['name']), fn($query) => $query->where('name', 'like', "%{$filters['name']}%"))
+            ->when(!empty($filters['region']), fn($query) => $query->where('region', $filters['region']))
+            ->when(!empty($filters['genre']), fn($query) => $query->where('genre', $filters['genre']))
+            ->get();
 
         $shops->map(function ($shop) {
             $shop->average_rating = $shop->reviews->avg('rating');

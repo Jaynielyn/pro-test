@@ -17,6 +17,19 @@ class Shop extends Model
         return $this->image_path ? Storage::url($this->image_path) : asset('images/no-image.png');
     }
 
+    public function scopeSearch($query, $filters)
+    {
+        return $query->when($filters['name'] ?? null, function ($query, $name) {
+            $query->where('name', 'like', "%{$name}%");
+        })
+            ->when($filters['region'] ?? null, function ($query, $region) {
+                $query->where('region', $region);
+            })
+            ->when($filters['genre'] ?? null, function ($query, $genre) {
+                $query->where('genre', $genre);
+            });
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class);
