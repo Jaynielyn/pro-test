@@ -1,40 +1,193 @@
 .mypage {
-    height: 100vh;
-    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.mypage__header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
 }
 
 .mypage__name {
-    width: 60%;
-    text-align: right;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .mypage__content {
     display: flex;
-    height: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 10px;
+    gap: 40px;
+    flex-grow: 1;
 }
 
-/*左側*/
 .left__page {
-    width: 40%;
+    flex: 1;
+    max-width: 45%;
+}
+
+.mypage__ttl {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .book__box {
-    width: 80%;
-    border-radius: 5px;
-    background-color: #007bff;
+    background-color: #0056FF;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 65%;
 }
 
 .book__item {
     display: flex;
-    color: white;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item-top {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .item__clock {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
-/*右側*/
+.item__clock img {
+    width: 24px;
+    height: auto;
+}
+
+.item__clock p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+form {
+    margin-left: auto;
+}
+
+form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+form button img {
+    width: 25px;
+}
+
+/* 右側（お気に入り店舗） */
 .right__page {
-    width: 60%;
+    flex: 1;
+    max-width: 50%;
+}
+
+.likes__box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.details {
+    display: block;
+    background-color: #0056FF;
+    color: white;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: calc(50% - 20px);
+    height: 280px;
+}
+
+.card__img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.card__content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 50%;
+}
+
+.card__content h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.card__content p {
+    margin-top: 10px;
+}
+
+.rating {
+    color: orange;
+    font-size: 14px;
+}
+
+.detail__btn {
+    display: block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.like__btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.like-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.like-button.liked {
+    color: red;
+}
+
+.heart-icon {
+    width: 40px !important;
+    height: 40px !important;
 }

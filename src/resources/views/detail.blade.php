@@ -65,15 +65,15 @@
     </div>
 
     <div class="shop__info right">
-        <div class="reservation__form">
-            <form class="form" action="{{ route('reserve.store', ['shop' => $shop->id]) }}" method="POST">
-                @csrf
+        <form class="form" action="{{ route('reserve.store', ['shop' => $shop->id]) }}" method="POST">
+            @csrf
+            <div class="book__box">
                 <h2>予約</h2>
                 <input type="date" id="date" name="date" value="{{ now()->format('Y-m-d') }}">
 
-                <input type="time" id="time" name="time" value="17:00" required>
+                <input type="time" id="time" name="time" value="17:00" class="input__long" required>
 
-                <input type="number" id="number" name="number" value="1" min="1" required>
+                <input type="number" id="number" name="number" value="1" min="1" class="input__long" required>
 
                 <div class="summary">
                     <p class="summary__inner"><strong>Shop:</strong> {{ $shop->name }}</p>
@@ -81,9 +81,9 @@
                     <p class="summary__inner"><strong>Time:</strong> <span id="selected-time">17:00</span></p>
                     <p class="summary__inner"><strong>Number:</strong> <span id="selected-number">1人</span></p>
                 </div>
-                <button type="submit" class="reserve__btn">予約する</button>
-            </form>
-        </div>
+            </div>
+            <button type="submit" class="reserve__btn">予約する</button>
+        </form>
     </div>
 </div>
 

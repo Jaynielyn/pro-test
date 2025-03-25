@@ -133,7 +133,7 @@ h1 {
 }
 
 /* 右側の予約フォーム */
-.reservation__form {
+.form {
     width: 100%;
     height: 85%;
     background-color: #3572F2;
@@ -141,20 +141,18 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    border-radius: 8px;
 }
 
-.form {
+.book__box {
     padding: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
 h2 {
     font-size: 24px;
     margin-bottom: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
 }
 
 input,select {
@@ -170,6 +168,10 @@ input {
     width: 30%;
 }
 
+.input__long {
+    width: 95%;
+}
+
 .sub__ttl {
     background-color: #007bff;
     color: white;
@@ -183,6 +185,7 @@ input {
     padding: 15px;
     margin-top: 20px;
     border-radius: 5px;
+    width: 94%;
 }
 
 .summary__inner {

@@ -22,7 +22,7 @@
     <div class="card__container">
         @foreach($shops as $shop)
         <div class="card">
-            <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}">
+            <img class="card__img" src="{{ $shop->image_url }}" alt="{{ $shop->name }}">
 
             <div class="card__content">
                 <h3>{{ $shop->name }}
@@ -32,19 +32,20 @@
                     </span>
                 </h3>
                 <p>#{{ $shop->region }} #{{ $shop->genre }}</p>
-                <a href="{{ route('shops.detail', ['id' => $shop->id]) }}" class="details">詳しく見る</a>
-                <button class="like-button" data-shop-id="{{ $shop->id }}" @guest disabled @endguest>
-                    @auth
-                    @if(Auth::user()->isLikedBy($shop))
-                    <img src="{{ asset('img/heart-pink.svg') }}" class="heart-icon" alt="いいね済み">
-                    @else
-                    <img src="{{ asset('img/heart-gray.svg') }}" class="heart-icon" alt="未いいね">
-                    @endif
-                    @else
-                    <img src="{{ asset('img/heart-gray.svg') }}" class="heart-icon" alt="未いいね">
-                    @endauth
-                </button>
-
+                <div class="like__btn">
+                    <a href="{{ route('shops.detail', ['id' => $shop->id]) }}" class="detail__btn">詳しく見る</a>
+                    <button class="like-button" data-shop-id="{{ $shop->id }}" @guest disabled @endguest>
+                        @auth
+                        @if(Auth::user()->isLikedBy($shop))
+                        <img src="{{ asset('img/heart-pink.svg') }}" class="heart-icon" alt="いいね済み">
+                        @else
+                        <img src="{{ asset('img/heart-gray.svg') }}" class="heart-icon" alt="未いいね">
+                        @endif
+                        @else
+                        <img src="{{ asset('img/heart-gray.svg') }}" class="heart-icon" alt="未いいね">
+                        @endauth
+                    </button>
+                </div>
             </div>
         </div>
         @endforeach
